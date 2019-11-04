@@ -5,6 +5,7 @@
 #include <vector>
 #include <list>
 #include <fstream>
+#include <ostream>
 
 class Graf {
 private:

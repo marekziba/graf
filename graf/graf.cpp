@@ -37,6 +37,8 @@ void Graf::fromFile(const char* path) {
 Graf::Graf(const char* path) {
 	this->fromFile(path);
 }
+
+
 void Graf::colorize() {
 
 	bool* available = new bool[_n];
@@ -73,7 +75,7 @@ void Graf::colorize() {
 
 void Graf::printColors() {
 	for (int i = 0; i < _n; i++) {
-		std::cout << i+1 << " -> " << colors[i] << "\n";
+		std::cout << i+1 << " -> " << colors[i]+1 << "\n";
 	}
 }
 

@@ -2,7 +2,73 @@
 //
 
 #include <iostream>
+#include <cstdlib>
+#include <ctime>
+#include <algorithm>
 #include "graf.h"
+
+void generate(int nVerts, float density) {		// old function, fucking mess, working but it's far from perfect
+	int nEdges = round((nVerts * (nVerts - 1)) / 2 * density);
+	nEdges -= nVerts;
+	std::srand(std::time(nullptr));
+	int randEdge, randVert = -1;
+	std::vector< std::list<int> > vertices; vertices.resize(nVerts);
+	for (int i = 0; i < nVerts; i++) {
+
+		randEdge = std::rand() % nEdges;
+		
+		do {
+			randVert = std::rand() % nVerts;
+		} while (randVert == i);
+
+		vertices[i].push_back(randVert);
+
+		for (int j = 0; j < randEdge; j++) {
+			
+			do {
+				randVert = std::rand() % nVerts;
+			} while (randVert == i || std::find( std::begin(vertices[i]), std::end(vertices[i]), randVert ) != std::end(vertices[i]) );
+
+			vertices[i].push_back(randVert);
+
+		}
+
+		nEdges -= randEdge;
+	}
+
+	Graf gxf(vertices);
+	gxf.print();
+}
+
+void generate2(int nVerts, float density) {		// this one works fine
+	// the std::array can only be fixed-size, therefore we're forced to use vector of vectors 
+	std::vector< std::vector<int> > adjMX; adjMX.resize(nVerts);		
+	//	initializing the "array"
+	for (int i = 0; i < nVerts; i++) {
+		adjMX[i].resize(nVerts);
+	}
+	//	filling with zeros
+	for (int i = 0; i < nVerts; i++) {
+		for (int j = 0; j < nVerts; j++) {
+			adjMX[i][j] = 0;
+		}
+	}
+	//	and now we're determining the amount of edges and generating them by randomly choosing two vertices
+	int nEdges = round((nVerts * (nVerts - 1)) / 2 * density);
+	int v1, v2;
+	std::srand(std::time(nullptr));
+	for (int i = 0; i < nEdges; i++) {
+		do {
+			v1 = std::rand() % nVerts;
+			v2 = std::rand() % nVerts;
+		} while (v1 == v2 || adjMX[v1][v2] == 1 || adjMX[v2][v1] == 1);	// we need to check whether the edge is not a self-loop and hasn't been generated yet
+
+		adjMX[v1][v2] = 1; adjMX[v2][v1] = 1;	// writing an edge to the matrix
+		//std::cout << v1 << " --- " << v2 << "\n";
+	}
+	//	if we want to generate "pretty" files we need to add some code here to write the edges in order from adjacency matrix instead of writing them in random order,
+	//	however the generator works and the files it producec are valid - so it's not necessary
+}
 
 int main()
 {
