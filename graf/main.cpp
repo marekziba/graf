@@ -5,9 +5,10 @@
 #include <cstdlib>
 #include <ctime>
 #include <algorithm>
+#include <fstream>
 #include "graf.h"
 
-void generate(int nVerts, float density) {		// old function, fucking mess, working but it's far from perfect
+void generate(int nVerts, float density) {		// old function, working but it's far from perfect
 	int nEdges = round((nVerts * (nVerts - 1)) / 2 * density);
 	nEdges -= nVerts;
 	std::srand(std::time(nullptr));
@@ -40,10 +41,15 @@ void generate(int nVerts, float density) {		// old function, fucking mess, worki
 	gxf.print();
 }
 
-void generate2(int nVerts, float density) {		// this one works fine
+void generate2(int nVerts, float density, std::string path) {		// this one works fine
 	// the std::array can only be fixed-size, therefore we're forced to use vector of vectors 
 	std::vector< std::vector<int> > adjMX; adjMX.resize(nVerts);		
 	//	initializing the "array"
+
+	std::ofstream outfile(path);
+
+	outfile << nVerts << "\n";
+
 	for (int i = 0; i < nVerts; i++) {
 		adjMX[i].resize(nVerts);
 	}
@@ -66,17 +72,28 @@ void generate2(int nVerts, float density) {		// this one works fine
 		adjMX[v1][v2] = 1; adjMX[v2][v1] = 1;	// writing an edge to the matrix
 		//std::cout << v1 << " --- " << v2 << "\n";
 	}
+
+	for (int i = 0; i < nVerts; i++) {
+		for (int j = 0; j < nVerts; j++) {
+			if (adjMX[i][j] == 1 && i < j) {
+				outfile << i+1 << " " << j+1 << "\n";
+			}
+		}
+	}
+
+	outfile.close();
 	//	if we want to generate "pretty" files we need to add some code here to write the edges in order from adjacency matrix instead of writing them in random order,
 	//	however the generator works and the files it producec are valid - so it's not necessary
 }
 
 int main()
 {
-	Graf g1("vertices.txt");
+	/*Graf g1("vertices.txt");
 	g1.print();
 	std::cout << "\n\n\n";
 	g1.colorize();
-	g1.printColors();
+	g1.printColors();*/
+	generate2(128, 0.9, "C:/Users/Lenovo/Documents/OK/graf_09.txt");
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
