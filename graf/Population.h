@@ -4,9 +4,10 @@
 
 class Population
 {
+	int _ncolors, _nverts;
 	std::vector<Solution> _solutions;
 	// Generate n randomly generated chromosomes. Used in constructor and in refresh() function.
-	std::vector<Solution> generate(int n, int nverts, int ncolors);
+	//std::vector<Solution> generate(int n, int nverts, int ncolors);
 
 	// Sorts the solutions (chromosomes) by their performance
 	void sort();
