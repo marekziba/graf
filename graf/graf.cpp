@@ -16,7 +16,8 @@ void Graf::fromFile(const char* path) {
 	{
 		myfile >> _n;
 		//std::cout << "Amount of vertices: " << _n << "\n";
-		_vertexList.resize(_n); colors.resize(_n);
+		_vertexList.resize(_n); colors.resize(_n); 
+		std::cout << _n << "\n";
 		if (myfile.peek() == std::ifstream::traits_type::eof()) /*TODO: throw exception*/;
 		else
 		{
@@ -74,9 +75,15 @@ void Graf::colorize() {
 }
 
 void Graf::printColors() {
+	int max = 0;
 	for (int i = 0; i < _n; i++) {
+		if (colors[i]+1 > max) {
+			max = colors[i]+1;
+		}
 		std::cout << i+1 << " -> " << colors[i]+1 << "\n";
 	}
+
+	std::cout << "\nTotal colors:\t" << max << "\n";
 }
 
 void Graf::addEdge(int v1, int v2) {
