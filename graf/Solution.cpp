@@ -4,7 +4,7 @@
 
 Solution::Solution() {}
 
-Solution::Solution(int nverts, int ncolors, int i) {
+Solution::Solution(int nverts, int ncolors) {
 	_colors.resize(nverts);
 	std::generate(_colors.begin(), _colors.end(), std::rand);
 

@@ -1,10 +1,10 @@
 #pragma once
+#include "Population.h"
 #include <vector>
 
 class GeneticAlgorithm
 {
-	//std::vector<Solution> _solutions;
-
+	Population _p;
 public:
 	void run();
 };

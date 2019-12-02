@@ -6,10 +6,12 @@
 
 Population::Population(Graf g, int n, int ncolors) {
 
+	_nverts = g.size(); _ncolors = ncolors;
+
 	_solutions.resize(n);
 	
 	for (int i = 0; i < _solutions.size(); i++) {
-		_solutions[i] = Solution(g.size(), ncolors,i);
+		_solutions[i] = Solution(g.size(), ncolors);
 		//std::cout << _solutions[i] <<"\n";
 	}
 
@@ -19,7 +21,7 @@ void Population::refresh() {
 	this->sort();
 	int breakPoint = (int) round(_solutions.size() / 2);
 	for (int i = breakPoint; i < _solutions.size(); i++) {
-		_solutions[i] = Solution(_nverts, _ncolors,i);
+		_solutions[i] = Solution(_nverts, _ncolors);
 	}
 }
 

@@ -9,7 +9,7 @@ class Solution
 	int fitness;
 public:
 	Solution();
-	Solution(int nverts, int ncolors, int i);
+	Solution(int nverts, int ncolors);
 	int getFitness(Graf g);
 	bool operator < (Solution &s);
 	friend std::ostream & operator << (std::ostream& out, Solution& s);
