@@ -122,5 +122,8 @@ void Graf::print() {
 int Graf::size() { return _n; }
 
 bool Graf::checkEdge(int v1, int v2) {
-	return (_matrix[v1][v2] == 1) || (_matrix[v2][v1] == 1) ? true : false;
+	if (_matrix[v1][v2] == 1) {
+		return true;
+	}
+	return false;
 }

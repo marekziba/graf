@@ -86,17 +86,26 @@ void generate2(int nVerts, float density, std::string path) {		// this one works
 	outfile.close();
 }
 
+void crossover(Solution& s1, Solution& s2) {
+	int tmp;
+	std::srand(std::time(nullptr));
+	int breakPoint = std::rand() % s1.size();
+	for (int i = 0; i < s1.size(); i++) {
+		tmp = s1[i]; s1[i] = s2[i]; s2[i] = tmp;
+	}
+}
+
 int main()
 {
 	std::string path = "C:/Users/Lenovo/Documents/OK/testpop.txt";
-	generate2(8, 0.4, path);
+	generate2(24, 0.4, path);
 	//std::cout << "X";
 	Graf g1(path.c_str());
 	//g1.print();
 	std::cout << "\n\n\n";
 	//g1.colorize();
 	//g1.printColors();
-	Population p(g1,5,5);
+	Population p(g1,50,24);
 	std::cout << p;
 	
 }

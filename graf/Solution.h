@@ -9,8 +9,10 @@ class Solution
 	int fitness;
 public:
 	Solution();
-	Solution(int nverts, int ncolors);
+	Solution(Graf &g, int ncolors);
 	int getFitness(Graf g);
 	bool operator < (Solution &s);
 	friend std::ostream & operator << (std::ostream& out, Solution& s);
+	int size();
+	int & operator [] (int i);
 };

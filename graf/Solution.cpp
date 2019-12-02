@@ -4,18 +4,29 @@
 
 Solution::Solution() {}
 
-Solution::Solution(int nverts, int ncolors) {
-	_colors.resize(nverts);
+Solution::Solution(Graf &g, int ncolors) {
+	fitness = 0;
+	_colors.resize(g.size());
 	std::generate(_colors.begin(), _colors.end(), std::rand);
 
 	for (int i = 0; i < _colors.size(); i++) {
 		_colors[i] = _colors[i] % ncolors;
 	}
+
+	for (int i = 0; i < _colors.size(); i++) {
+		for (int j = i+1; j < _colors.size(); j++) {
+			if (_colors[i] == _colors[j] && g.checkEdge(i,j)) {
+				this->fitness++;
+				//std::cout << "invEdge\n";
+			}
+		}
+	}
+	//std::cout << fitness <<"\n";
 }
 
 int Solution::getFitness(Graf g) {
 	// Insert code here and git push
-	return 0;
+	return fitness;
 }
 
 bool Solution::operator < (Solution &s) {
@@ -34,4 +45,12 @@ std::ostream& operator << (std::ostream& stream, Solution& s) {
 	}
 	//out << stream.str();
 	return stream;
+}
+
+int Solution::size() {
+	return _colors.size();
+}
+
+int& Solution::operator [] (int i) {
+	return _colors[i];
 }
