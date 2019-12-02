@@ -101,3 +101,5 @@ void Graf::print() {
 		std::cout << "\n";
 	}
 }
+
+int Graf::size() { return _n; }

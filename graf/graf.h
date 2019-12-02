@@ -20,6 +20,7 @@ public:
 	void printColors();
 	void addEdge(int v1, int v2);
 	void print();
+	int size();
 };
 
 #endif /*graf_cpp*/

@@ -154,10 +154,14 @@
     <ClCompile Include="GeneticAlgorithm.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="graf.cpp" />
+    <ClCompile Include="Population.cpp" />
+    <ClCompile Include="Solution.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GeneticAlgorithm.h" />
     <ClInclude Include="graf.h" />
+    <ClInclude Include="Population.h" />
+    <ClInclude Include="Solution.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
