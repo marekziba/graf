@@ -1,6 +1,7 @@
 #pragma once
 #include "graf.h"
 #include "Solution.h"
+#include <iostream>
 
 class Population
 {
@@ -18,5 +19,6 @@ public:
 
 	// Remove the worse performing half of solutions (chromosomes) and replace them with randomly generated ones 
 	void refresh();
+	friend std::ostream& operator << (std::ostream& out, Population& p);
 };
 

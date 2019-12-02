@@ -1,9 +1,21 @@
 #include "graf.h"
 
+void Graf::initializeStructures() {
+	_vertexList.resize(_n); colors.resize(_n);
+
+	_matrix.resize(_n);
+	for (int i = 0; i < _n; i++) {
+		_matrix[i].resize(_n);
+		for (int j = 0; j < _n; j++) {
+			_matrix[i][j] = 0;
+		}
+	}
+}
+
 Graf::Graf(std::vector< std::list<int> > vertexList) {
 	_vertexList = vertexList;
 	_n = vertexList.size();
-	_vertexList.resize(_n); colors.resize(_n);
+	initializeStructures();
 }
 
 void Graf::fromFile(const char* path) {
@@ -16,7 +28,9 @@ void Graf::fromFile(const char* path) {
 	{
 		myfile >> _n;
 		//std::cout << "Amount of vertices: " << _n << "\n";
-		_vertexList.resize(_n); colors.resize(_n); 
+		
+		initializeStructures();
+
 		std::cout << _n << "\n";
 		if (myfile.peek() == std::ifstream::traits_type::eof()) /*TODO: throw exception*/;
 		else
@@ -89,6 +103,9 @@ void Graf::printColors() {
 void Graf::addEdge(int v1, int v2) {
 	_vertexList[v1].push_back(v2);
 	_vertexList[v2].push_back(v1);
+
+	_matrix[v1][v2] = 1;
+	_matrix[v2][v1] = 1;
 }
 
 void Graf::print() {
@@ -103,3 +120,7 @@ void Graf::print() {
 }
 
 int Graf::size() { return _n; }
+
+bool Graf::checkEdge(int v1, int v2) {
+	return _matrix[v1][v2] || _matrix[v2][v1] ? true : false;
+}

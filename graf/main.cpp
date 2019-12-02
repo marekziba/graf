@@ -7,6 +7,8 @@
 #include <algorithm>
 #include <fstream>
 #include "graf.h"
+#include "Solution.h"
+#include "Population.h"
 
 void generate(int nVerts, float density) {		// old function, working but it's far from perfect
 	int nEdges = round((nVerts * (nVerts - 1)) / 2 * density);
@@ -86,13 +88,17 @@ void generate2(int nVerts, float density, std::string path) {		// this one works
 
 int main()
 {
-	std::string path = "C:/Users/Lenovo/Documents/OK/lista.txt";
-	//generate2(160, 1.0, path);
+	std::string path = "C:/Users/Lenovo/Documents/OK/testpop.txt";
+	generate2(8, 0.4, path);
+	//std::cout << "X";
 	Graf g1(path.c_str());
 	//g1.print();
 	std::cout << "\n\n\n";
-	g1.colorize();
-	g1.printColors();
+	//g1.colorize();
+	//g1.printColors();
+	Population p(g1,5,5);
+	std::cout << p;
+	
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu

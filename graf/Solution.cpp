@@ -4,11 +4,12 @@
 
 Solution::Solution() {}
 
-Solution::Solution(int nverts, int ncolors) {
+Solution::Solution(int nverts, int ncolors, int i) {
 	_colors.resize(nverts);
-	std::srand(std::time(nullptr));
+	std::generate(_colors.begin(), _colors.end(), std::rand);
+
 	for (int i = 0; i < _colors.size(); i++) {
-		_colors[i] = std::rand() % ncolors;
+		_colors[i] = _colors[i] % ncolors;
 	}
 }
 
