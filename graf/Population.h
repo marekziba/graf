@@ -1,5 +1,6 @@
 #pragma once
 #include "graf.h"
+#include "Solution.h"
 
 class Population
 {
