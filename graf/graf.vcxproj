@@ -154,12 +154,14 @@
     <ClCompile Include="GeneticAlgorithm.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="graf.cpp" />
+    <ClCompile Include="misc.cpp" />
     <ClCompile Include="Population.cpp" />
     <ClCompile Include="Solution.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="GeneticAlgorithm.h" />
     <ClInclude Include="graf.h" />
+    <ClInclude Include="misc.h" />
     <ClInclude Include="Population.h" />
     <ClInclude Include="Solution.h" />
   </ItemGroup>

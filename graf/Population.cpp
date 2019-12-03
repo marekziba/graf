@@ -35,3 +35,11 @@ std::ostream& operator << (std::ostream& out, Population& p) {
 	}
 	return out;
 }
+
+Solution& Population::operator[] (int i) {
+	return _solutions[i];
+}
+
+int Population::size() {
+	return _solutions.size();
+}
