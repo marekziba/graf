@@ -1,4 +1,6 @@
 #include "graf.h"
+#include <exception>
+#include <stdexcept>
 
 void Graf::initializeStructures() {
 	_vertexList.resize(_n); colors.resize(_n);
@@ -126,4 +128,10 @@ bool Graf::checkEdge(int v1, int v2) {
 		return true;
 	}
 	return false;
+}
+
+std::vector<int> Graf::getAdjacentVertices(int vert) {
+	if (vert >= _vertexList.size()) throw std::out_of_range("Out of range subscript!");
+	std::vector<int> v(_vertexList[vert].begin(), _vertexList[vert].end());
+	return v;
 }

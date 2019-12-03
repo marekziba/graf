@@ -4,7 +4,7 @@
 
 Solution::Solution() {}
 
-Solution::Solution(Graf &g, int ncolors) {
+Solution::Solution(Graf &g, int ncolors){
 	fitness = 0;
 	_colors.resize(g.size());
 	std::generate(_colors.begin(), _colors.end(), std::rand);
@@ -24,7 +24,7 @@ Solution::Solution(Graf &g, int ncolors) {
 	//std::cout << fitness <<"\n";
 }
 
-int Solution::getFitness(Graf g) {
+int Solution::getFitness() {
 	// Insert code here and git push
 	return fitness;
 }
@@ -53,4 +53,8 @@ int Solution::size() {
 
 int& Solution::operator [] (int i) {
 	return _colors[i];
+}
+
+void Solution::mutate(Graf& g, int mode) {
+	// Insert code here and git push
 }

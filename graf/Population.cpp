@@ -31,7 +31,7 @@ void Population::sort() {
 
 std::ostream& operator << (std::ostream& out, Population& p) {
 	for (Solution s : p._solutions) {
-		out << s <<"\t" <<s.getFitness(p._g) <<"\n";
+		out << s <<"\t" <<s.getFitness() <<"\n";
 	}
 	return out;
 }

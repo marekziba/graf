@@ -24,6 +24,7 @@ public:
 	void print();
 	int size();
 	bool checkEdge(int, int);
+	std::vector<int> getAdjacentVertices(int vertex);
 };
 
 #endif /*graf_cpp*/
