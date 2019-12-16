@@ -5,7 +5,12 @@
 class GeneticAlgorithm
 {
 	Population _p;
+	Graf _g;
+	int _ncolors;
 public:
-	void run();
+	GeneticAlgorithm(Graf& g,int ncolors);
+	int run(int);
+	void printResults();
+	Solution& getBest();
 };
 

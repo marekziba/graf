@@ -1,4 +1,5 @@
 #include "Population.h"
+#include "misc.h"
 #include <cmath>
 #include <algorithm>
 #include <random>
@@ -21,7 +22,13 @@ void Population::refresh() {
 	this->sort();
 	int breakPoint = (int) round(_solutions.size() / 2);
 	for (int i = breakPoint; i < _solutions.size(); i++) {
-		_solutions[i] = Solution(_g, _ncolors);
+		//getParents();
+		//crossover
+
+		// put this in main() later
+		Solution child = reproduce(*this, _g, 0);
+		child.mutate(_g, _ncolors, 1);
+		_solutions[i] = child;
 	}
 }
 

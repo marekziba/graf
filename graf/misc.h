@@ -7,4 +7,4 @@
 
 void crossover(Solution s1, Solution s2);
 
-std::vector<Solution> getParents(Population& p, int mode);
+Solution reproduce(Population& p, Graf &g, int mode);

@@ -9,11 +9,12 @@
 #include "graf.h"
 #include "Solution.h"
 #include "Population.h"
+#include "GeneticAlgorithm.h"
 
 void generate(int nVerts, float density) {		// old function, working but it's far from perfect
 	int nEdges = round((nVerts * (nVerts - 1)) / 2 * density);
 	nEdges -= nVerts;
-	std::srand(std::time(nullptr));
+	//std::srad(std::time(nullptr));
 	int randEdge, randVert = -1;
 	std::vector< std::list<int> > vertices; vertices.resize(nVerts);
 	for (int i = 0; i < nVerts; i++) {
@@ -64,7 +65,7 @@ void generate2(int nVerts, float density, std::string path) {		// this one works
 	//	and now we're determining the amount of edges and generating them by randomly choosing two vertices
 	int nEdges = round((nVerts * (nVerts - 1)) / 2 * density);
 	int v1, v2;
-	std::srand(std::time(nullptr));
+	//std::srad(std::time(nullptr));
 	for (int i = 0; i < nEdges; i++) {
 		do {
 			v1 = std::rand() % nVerts;
@@ -90,16 +91,26 @@ void generate2(int nVerts, float density, std::string path) {		// this one works
 int main()
 {
 	std::string path = "C:/Users/Lenovo/Documents/OK/testpop.txt";
-	generate2(240, 0.4, path);
+	generate2(24, 0.4, path);
+	std::srand(std::time(nullptr));
 	//std::cout << "X";
 	Graf g1(path.c_str());
 	//g1.print();
 	std::cout << "\n\n\n";
 	//g1.colorize();
 	//g1.printColors();
-	Population p(g1,50,24);
-	std::cout << p;
-	
+	//Population p(g1,50,8);
+	//std::cout << p;
+	int ncolors = 20;
+	GeneticAlgorithm genalg(g1,ncolors);
+	genalg.printResults();
+	std::cout << "\n" << "-----------------\n";
+	while (genalg.run(20000) && ncolors > 0) {
+		std::cout << "Found solution for " << ncolors << " colors!\n";
+		std::cout << genalg.getBest() <<"\n";
+		genalg = GeneticAlgorithm(g1, --ncolors);
+	}
+	genalg.printResults();
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
