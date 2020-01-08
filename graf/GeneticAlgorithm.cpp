@@ -12,7 +12,7 @@ GeneticAlgorithm::GeneticAlgorithm(Graf& g, int ncolors) :
 int GeneticAlgorithm::run(int termCondition) {
 	int nIter = 0;
 	std::srand(std::time(nullptr));
-	while (nIter <= termCondition && _p[0].getFitness() != 0) {	// add "solution found" condition
+	while (nIter <= termCondition && _p[0].getFitness() != 0) {
 		_p.refresh();
 		nIter++;
 	}

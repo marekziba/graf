@@ -114,7 +114,6 @@ void Solution::mutate(Graf& g, int ncolors, int mode) {
 		std::vector<int> adjacent;
 		int currentColor;
 		int idx, cidx;
-		std::vector<int> validColors, tmp, tmp2;
 		bool goodColor;
 		for (int i = 0; i < _colors.size(); i++) {
 			goodColor = true;
@@ -127,7 +126,8 @@ void Solution::mutate(Graf& g, int ncolors, int mode) {
 				}
 			}
 			if (!goodColor){
-				_colors[i] = std::rand() % ncolors;
+				int gh = std::rand() % ncolors;
+				_colors[i] = gh;
 			}
 		}
 

@@ -91,7 +91,7 @@ void generate2(int nVerts, float density, std::string path) {		// this one works
 int main()
 {
 	std::string path = "C:/Users/Lenovo/Documents/OK/testpop.txt";
-	generate2(24, 0.4, path);
+	generate2(24, 0.85, path);
 	std::srand(std::time(nullptr));
 	//std::cout << "X";
 	Graf g1(path.c_str());
@@ -101,7 +101,7 @@ int main()
 	//g1.printColors();
 	//Population p(g1,50,8);
 	//std::cout << p;
-	int ncolors = 20;
+	int ncolors = 24;
 	GeneticAlgorithm genalg(g1,ncolors);
 	genalg.printResults();
 	std::cout << "\n" << "-----------------\n";

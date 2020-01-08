@@ -27,12 +27,13 @@ void Population::refresh() {
 		//crossover
 
 		// put this in main() later
-		if (_solutions[0].getFitness() > 4) {
+		if (_solutions[0].getFitness() > 2) {
 			mode = 0;
 		}
 		else {
 			mode = 1;
 		}
+		mode = 0;
 		Solution child = reproduce(*this, _g, mode);
 		child.mutate(_g, _ncolors, mode);
 		_solutions[i] = child;
