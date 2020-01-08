@@ -76,41 +76,64 @@ int& Solution::operator [] (int i) {
 
 void Solution::mutate(Graf& g, int ncolors, int mode) {
 	//ncolors--;
-	std::vector<int> adjacent;
-	int currentColor;
-	int idx, cidx;
-	std::vector<int> validColors, tmp, tmp2;
-	for (int i = 0; i < ncolors; i++) {
-		validColors.push_back(i);
-	}
-	for (int i = 0; i < _colors.size(); i++) {
-		adjacent = g.getAdjacentVertices(i);
-		tmp = validColors;
-		tmp2 = {};
-		currentColor = _colors[i];
-		if (currentColor >= tmp.size()) {
-			std::cout << "chuj\n";
+	if (mode == 0) {
+		std::vector<int> adjacent;
+		int currentColor;
+		int idx, cidx;
+		std::vector<int> validColors, tmp, tmp2;
+		for (int i = 0; i < ncolors; i++) {
+			validColors.push_back(i);
 		}
-		for (int j : adjacent) {
-			if (_colors[j] == currentColor) {
-				/*
-				std::vector<int>::iterator position = std::find(validColors.begin(), validColors.end(), j);
-				if (position != validColors.end()) {
-					validColors.erase(position);
+		for (int i = 0; i < _colors.size(); i++) {
+			adjacent = g.getAdjacentVertices(i);
+			tmp = validColors;
+			tmp2 = {};
+			currentColor = _colors[i];
+			for (int j : adjacent) {
+				if (_colors[j] == currentColor) {
+					/*
+					std::vector<int>::iterator position = std::find(validColors.begin(), validColors.end(), j);
+					if (position != validColors.end()) {
+						validColors.erase(position);
+					}
+					*/
+					tmp[currentColor] = -1;
 				}
-				*/
-				tmp[currentColor] = -1;
 			}
-		}
-		for (int col : tmp) {
-			if (col >= 0) {
-				tmp2.push_back(col);
+			for (int col : tmp) {
+				if (col >= 0) {
+					tmp2.push_back(col);
+				}
 			}
+			cidx = std::rand() % tmp2.size();
+			_colors[i] = tmp2[cidx];
+			// copy validColors !!!
 		}
-		cidx = std::rand() % tmp2.size();
-		_colors[i] = tmp2[cidx];
-		// copy validColors !!!
 	}
+	else{
+		std::vector<int> adjacent;
+		int currentColor;
+		int idx, cidx;
+		std::vector<int> validColors, tmp, tmp2;
+		bool goodColor;
+		for (int i = 0; i < _colors.size(); i++) {
+			goodColor = true;
+			adjacent = g.getAdjacentVertices(i);
+			currentColor = _colors[i];
+			for (int j : adjacent) {
+				if (_colors[j] == currentColor) {
+					goodColor = false;
+					break;
+				}
+			}
+			if (!goodColor){
+				_colors[i] = std::rand() % ncolors;
+			}
+		}
+
+
+	}
+	
 
 }
 

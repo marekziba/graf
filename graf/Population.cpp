@@ -21,13 +21,20 @@ Population::Population(Graf &g, int n, int ncolors): _g(g) {
 void Population::refresh() {
 	this->sort();
 	int breakPoint = (int) round(_solutions.size() / 2);
+	int mode;
 	for (int i = breakPoint; i < _solutions.size(); i++) {
 		//getParents();
 		//crossover
 
 		// put this in main() later
-		Solution child = reproduce(*this, _g, 0);
-		child.mutate(_g, _ncolors, 1);
+		if (_solutions[0].getFitness() > 4) {
+			mode = 0;
+		}
+		else {
+			mode = 1;
+		}
+		Solution child = reproduce(*this, _g, mode);
+		child.mutate(_g, _ncolors, mode);
 		_solutions[i] = child;
 	}
 }
