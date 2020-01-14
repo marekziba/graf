@@ -33,7 +33,6 @@ Solution::Solution(Graf &g, std::vector<int> v) {
 }
 
 int Solution::getFitness() {
-	// Insert code here and git push
 	return fitness;
 }
 

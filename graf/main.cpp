@@ -1,6 +1,15 @@
 // graf.cpp : This file contains the 'main' function. Program execution begins and ends there.
 //
 
+// TODO LIST:
+/*
+	1. Losowosc
+	2. Fitness
+	3. Sortowanie/odrzucanie populacji
+	4. Crossover
+	5wszystko
+*/
+
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
@@ -90,8 +99,8 @@ void generate2(int nVerts, float density, std::string path) {		// this one works
 
 int main()
 {
-	std::string path = "C:/Users/Lenovo/Documents/OK/testpop.txt";
-	generate2(24, 0.85, path);
+	std::string path = "C:/Users/Lenovo/Documents/OK/graff.txt";
+	generate2(240, 0.5, path);
 	std::srand(std::time(nullptr));
 	//std::cout << "X";
 	Graf g1(path.c_str());
@@ -101,7 +110,7 @@ int main()
 	//g1.printColors();
 	//Population p(g1,50,8);
 	//std::cout << p;
-	int ncolors = 24;
+	int ncolors = 242;
 	GeneticAlgorithm genalg(g1,ncolors);
 	genalg.printResults();
 	std::cout << "\n" << "-----------------\n";

@@ -33,7 +33,7 @@ void Population::refresh() {
 		else {
 			mode = 1;
 		}
-		mode = 0;
+		//mode = 0;
 		Solution child = reproduce(*this, _g, mode);
 		child.mutate(_g, _ncolors, mode);
 		_solutions[i] = child;

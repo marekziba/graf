@@ -10,15 +10,14 @@ Solution reproduce(Population &p, Graf &g, int mode) {
 	p.sort();
 	Solution parent1, parent2;
 	switch (mode) {
-	case SEL_BEST:
+	case 1:
 	{
 		parent1 = p[0], parent2 = p[1];
 		//return { parent1, parent2 };
 		break;
 	}
-	case SEL_RANDOM:
+	case 0:
 	{
-		//std::srand(std::time(nullptr));
 		int max = p.size();
 		int n1 = std::rand() % max, n2 = std::rand() % max;
 
