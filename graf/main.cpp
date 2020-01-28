@@ -99,8 +99,28 @@ void generate2(int nVerts, float density, std::string path) {		// this one works
 
 int main()
 {
+	/*
+	std::cout << "graf jebany w dupe\n";
 	std::string path = "C:/Users/Lenovo/Documents/OK/graff.txt";
-	generate2(240, 0.5, path);
+	//generate2(6, 0.85, path);
+	Graf g1(path.c_str());
+	g1.print();
+	std::srand(std::time(nullptr));
+	Population p(g1, 5, 4);
+	std::cout << p <<"\n";
+	std::cout <<"\n" << p[0] << "\n";
+
+
+	p.refresh();
+
+	std::cout << "\nRefreshed population: \n\n" << p << "\n";
+
+
+	*/
+
+	
+	std::string path = "C:/Users/Lenovo/Documents/OK/graff.txt";
+	generate2(100, 0.4, path);
 	std::srand(std::time(nullptr));
 	//std::cout << "X";
 	Graf g1(path.c_str());
@@ -110,7 +130,7 @@ int main()
 	//g1.printColors();
 	//Population p(g1,50,8);
 	//std::cout << p;
-	int ncolors = 242;
+	int ncolors = 100;
 	GeneticAlgorithm genalg(g1,ncolors);
 	genalg.printResults();
 	std::cout << "\n" << "-----------------\n";

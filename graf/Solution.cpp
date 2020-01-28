@@ -138,7 +138,9 @@ void Solution::mutate(Graf& g, int ncolors, int mode) {
 
 
 
+void mutate2() {
 
+}
 
 
 
