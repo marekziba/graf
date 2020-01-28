@@ -4,7 +4,7 @@
 #include <random>
 
 GeneticAlgorithm::GeneticAlgorithm(Graf& g, int ncolors) :
-	_p(g, g.size(), ncolors), _g(g)
+	_p(g, 50, ncolors), _g(g)
 {
 	_ncolors = ncolors;
 }
@@ -17,8 +17,14 @@ int GeneticAlgorithm::run(int termCondition) {
 		nIter++;
 	}
 	std::cout << "cmon do something\n";
-	if (_p[0].getFitness() == 0) return 1;
-	else return 0;
+	if (_p[0].getFitness() == 0) {
+		std::cout << "Found solution!";
+		return 1;
+	}
+	else {
+		std::cout << "Solution not found!";
+		return 0;
+	}
 }
 
 void GeneticAlgorithm::printResults() {
