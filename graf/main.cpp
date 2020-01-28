@@ -120,7 +120,7 @@ int main()
 
 	
 	std::string path = "C:/Users/Lenovo/Documents/OK/graff.txt";
-	generate2(100, 0.4, path);
+	generate2(25, 0.8, path);
 	std::srand(std::time(nullptr));
 	//std::cout << "X";
 	Graf g1(path.c_str());
@@ -130,14 +130,15 @@ int main()
 	//g1.printColors();
 	//Population p(g1,50,8);
 	//std::cout << p;
-	int ncolors = 100;
+	int ncolors = 4;
 	GeneticAlgorithm genalg(g1,ncolors);
 	genalg.printResults();
 	std::cout << "\n" << "-----------------\n";
-	while (genalg.run(20000) && ncolors > 0) {
-		std::cout << "Found solution for " << ncolors << " colors!\n";
-		std::cout << genalg.getBest() <<"\n";
-		genalg = GeneticAlgorithm(g1, --ncolors);
+	while (!genalg.run(20000) && ncolors > 0) {
+		//std::cout << "Found solution for " << ncolors << " colors!\n";
+		//std::cout << genalg.getBest() <<"\n";
+		genalg.printResults();
+		genalg = GeneticAlgorithm(g1, ++ncolors);
 	}
 	genalg.printResults();
 }
